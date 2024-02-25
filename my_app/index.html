@@ -38,12 +38,15 @@
             <h1>ToDo List</h1>
             <ul class="list-group w-100">
                 <li class="list-group-item" v-for="task in tasks" :key="task.id">
-                    <span :class="{'text-decoration-line-through': task.done}">{{task.text}}</span>
+                    <span @click="toggleTask(task.id)"
+                        :class="{'text-decoration-line-through': task.done}">{{task.text}}</span>
                 </li>
             </ul>
             <div class="input-group my-3">
-                <input type="text" class="form-control" placeholder="Inserisci..." aria-label="Recipient's username">
-                <button class="btn btn-outline-warning ms-3" type="button" id="button-add">Button</button>
+                <form @submit.prevent="addTask" class="d-flex">
+                    <input type="text" class="form-control" placeholder="Inserisci..." v-model.trim="newTask">
+                    <button class="btn btn-outline-warning ms-3" type="submit" id="button-add">Button</button>
+                </form>
             </div>
         </main>
     </div>
