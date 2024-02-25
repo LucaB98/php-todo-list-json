@@ -24,6 +24,14 @@ const app = createApp({
             axios.post(`${endpoint}toggle/`, data, config).then(res => {
                 this.tasks = res.data;
             })
+        },
+        deleteTask(id) {
+            const data = { id };
+            const config = { headers: { 'Content-Type': 'multipart/form-data' } };
+
+            axios.post(`${endpoint}delete/`, data, config).then(res => {
+                this.tasks = res.data;
+            })
         }
     },
     created() {
