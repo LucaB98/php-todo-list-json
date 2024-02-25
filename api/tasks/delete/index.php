@@ -23,10 +23,7 @@ if($task_id){
     $tasks = json_decode($tasks, true);
 
 
-    $tasks = array_map(function ($task){
-        if($task['id'] == $_POST['id']) $task['done'] = !$task['done'];
-        return $task;
-    }, $tasks);
+    $tasks = array_filter($tasks, fn($task) => $task['id'] !== $task_id )
 
     // riconverto in json
     $tasks = json_encode($tasks);
